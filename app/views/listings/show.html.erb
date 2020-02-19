@@ -1,0 +1,33 @@
+<h2>Item Selected</h2>
+
+        <div class="row">
+        <div class="col">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header"><%= @listing.type.name %></div>
+                <div class="card-body">
+                    <p>Price:<%= number_to_currency @listing.price %></p>
+                    <p>Quantity:<%= @listing.quantity %></p>
+                    <p><button id="pay-now" class="btn btn-dark">Buy now</button></p>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  document
+    .querySelector("[id='pay-now']")
+    .addEventListener("click", () => {
+      const stripe = Stripe(
+        "<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
+      );
+      stripe.redirectToCheckout({
+        sessionId: "<%= @session.id %>"
+      });
+    });
+</script>
+
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+            <br>
+
+<p> <%= link_to "Back", buying_index_path %></p>

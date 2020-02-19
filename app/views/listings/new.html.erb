@@ -1,0 +1,40 @@
+<center>
+<div class="row">
+    <div class="col-4">
+    </div>
+    <div class="col-4 whitebox">
+        <h1> 
+        Add New Flower to <br> Flower Power 
+        </h1>
+        <p> Fill out this Form: </p>
+        <%= form_with model: @listing, :url => listings_create_path do |form| %>
+            <center><div class="form-row">
+                <div class="col-lg-12 mb-3">
+                    <%= label(:type, "Flower Type: ")%>
+                    <br>
+                    <%= form.select :type_id, @types, required: true %>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-lg-12 mb-3">
+                    <%= label(:price, "Price:") %>
+                    <br>
+                    <%= form.number_field :price, required: true %>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-lg-12 mb-3">
+                    <%= label(:quantity, "Quantity:") %>
+                    <br>
+                    <%= form.number_field :quantity, required: true %>
+                </div>
+            </div>
+            <br/>
+            <%= form.submit "Add Flower", class: "btn btn-primary btn-lg" %>
+            <%= link_to 'Back', root_path, class: "btn btn-danger btn-lg" %>
+        <%end%>
+        </div></center>
+    <div class="col-2">
+    </div>
+
+</div></center>

@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-4">
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <% @types.each do |type|%>
+            <div class="card-title">
+            <p><strong><%= link_to type.name, type_path(type) %></strong></p>
+            </div>
+                <% type.subtypes.each do |subtype|%>
+                    <p class="card-text"><%=link_to subtype.name, type_path(subtype)%></p>
+                    <%end%>
+        <%end%>
+        </div>  
+        </div>
+    </div>
+
+        <div class="col-8">
+            <h2><%= @type.name%></h2>
+
+            <% @listing.each do |listing| %>
+                    <div class="col">
+                        <div class="card text-white bg-info mb-1" style="max-width: 18rem;">
+                        <div class="card-header"><%= link_to "#{listing.type.name}", listings_show_path(listing.id) %>
+                        </div>
+                            <div class="card-body">
+                                <p>Price: <%= listing.price %></p>
+                                <p>Quantity<%= listing.quantity %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                <% end %>  
+            </div>
+        </div>
+</div>
